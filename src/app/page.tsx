@@ -19,7 +19,7 @@ export default async function Home() {
   return (
     <div className="prose md:prose-lg xl:prose-xl sm:mx-auto mx-8">
       <Image
-        src="/images/headshot.jpeg"
+        src="/images/headshot.png"
         alt="Rafa"
         className="mx-auto"
         width={250}
