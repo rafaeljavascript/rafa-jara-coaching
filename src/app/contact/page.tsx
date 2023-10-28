@@ -1,25 +1,23 @@
+import Markdown from "react-markdown";
 import Image from "next/image";
+import { n2m } from "@/notion";
 
-export default function Contact() {
+export const dynamic = "force-dynamic";
+export const revalidate = 600000;
+
+async function getPageContent() {
+  const mdblocks = await n2m.pageToMarkdown(
+    "d173d6d0-43f6-4287-b805-b999af53622c",
+  );
+  const mdString = n2m.toMarkdownString(mdblocks);
+  return mdString.parent;
+}
+
+export default async function Contact() {
+  const content = await getPageContent();
   return (
-    <div className="flex flex-col justify-start items-start prose text-base-content gap-2 mx-auto">
-      <h1 className="text-black text-[56px] font-bold mb-1">Contact Me</h1>
-      <h4>
-        Let’s talk 👋 Whether you would like to partner with me or you would
-        like to know more about coaching in general, I invite you to find a time
-        on my calendly or email me. I look forward to hearing from you
-      </h4>
-      <div className="mt-3 gap-4 flex flex-row justify-between items-center">
-        <a
-          className="btn btn-outline"
-          href="mailto:rafael.javascript@gmail.com"
-        >
-          Email
-        </a>
-        <a className="btn btn-outline" href="https://calendly.com/rjara-1">
-          Calendly
-        </a>
-      </div>
+    <div className="prose md:prose-lg xl:prose-xl sm:mx-auto mx-8">
+      <Markdown>{content}</Markdown>
     </div>
   );
 }
