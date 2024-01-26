@@ -10,7 +10,6 @@ interface Props {}
 const links = [
   { path: "/", label: "Home" },
   { path: "/about", label: "About Me" },
-  { path: "/advising", label: "Advising" },
   { path: "/leadership-coaching", label: "Leadership Coaching" },
   { path: "/career-coaching", label: "Career Coaching" },
   { path: "/testimonials", label: "Testimonials" },
@@ -26,7 +25,7 @@ const Links = () => {
           key={link.path}
           className={twMerge(
             "py-1 border-b-[2px] border-transparent",
-            pathname === link.path && "border-b-primary",
+            pathname === link.path && "border-b-primary"
           )}
           prefetch
           href={link.path}
